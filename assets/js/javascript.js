@@ -1,11 +1,24 @@
 const APIKey = "2b0d82c56713c6ea8be1f1b334a862ab";
-
 var searchButton = $('#searchBtn');
+var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
 
 searchButton.click(function() {
   var searchCity = $('#searchBar').val();
+  updateSearches(searchCity);
   getLocation(searchCity);
 });
+
+function updateSearches(newCity) {
+  if (!citySearches.includes(newCity)) {
+    citySearches.push(newCity);
+
+    if (citySearches.length > 10) {
+      citySearches.shift();
+    }
+
+    localStorage.setItem("cities", JSON.stringify(citySearches));
+  }
+}
 
 function getLocation(searchCity) {
   var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchCity + '&limit=1&appid=' + APIKey;
@@ -17,8 +30,7 @@ function getLocation(searchCity) {
         console.log(data);
         var lat = data[0].lat;
         var lon = data[0].lon;
-        var cityName = data[0].name;
-        getWeatherForecast(lat, lon, cityName);
+        getWeatherForecast(lat, lon);
     })
 }
 
@@ -31,14 +43,19 @@ function getWeatherForecast(lat, lon) {
     .then(function (data) {
         console.log(data);
         var forecastData = data.list;
-        populateCards(forecastData);
+        var cityDetails = data.city.name;
+        populateCards(forecastData, cityDetails);
     })
 }
 
-function populateCards(forecastData, cityName) {
-  var cityName = card.querySelector('#CityName');
+function populateCards(forecastData, cityDetails) {
   var cards = document.querySelectorAll('.card');
 
+  if (cards.length > 0) {
+    var name = cards[0].querySelector('#CityName');
+    name.textContent = cityDetails;
+  }
+  
   for (var i = 0; i < cards.length; i++) {
     var card = cards[i];
 
@@ -55,6 +72,8 @@ function populateCards(forecastData, cityName) {
     humidity.textContent = getHumidity(i, forecastData);
   }
 }
+
+
 
 function formatDate(index) {
   var date = new Date();

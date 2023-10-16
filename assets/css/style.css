@@ -1,5 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin-right: 10%;
+    margin-left: 10%;
 }
 
 #bodycontainer {
@@ -9,12 +11,10 @@ body {
 
 #title {
     display: flex;
-    justify-content: center;
-    font-size: 30px;
+    justify-content: start;
+    font-size: 40px;
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: #DAE8ED;
-    margin: -10px;
     font-weight: bold;
 }
 
@@ -37,51 +37,100 @@ body {
 #cardcontainer {
     display: flex;
     justify-content: space-around;
-    background-color:  #DAE8ED;
     margin: 10px;
-    border-style: solid;
-    border-color: #BCE0ED;
-    border-width: 4px;
-    border-radius: 10px;
+}
+
+#card2:hover {
+    background-color:  #BCE0ED;
 }
 
 .card {
     display: relative;
     right: 0px;
     width: 20%;
-    padding: 50px 0px 50px 20px;
+    padding: 30px 0px 30px 20px;
 }
 
 #card2 {
     border-style: solid;
     border-color: #BCE0ED;
-    border-width: 0px 4px 0px 0px;
-    margin-right: 10px;
+    border-width: 4px 2px 4px 2px;
+    width: 100%;
     height: 100%;
+    background-color: rgba(188, 224, 237, 0.6);
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-radius: 10px 0px 0px 10px;
+    transition: background-color 0.5s;
+}
+
+#card2:hover {
+    background-color: rgba(188, 224, 237, 1);
 }
 
 #card3 {
     border-style: solid;
     border-color: #BCE0ED;
-    border-width: 0px 4px 0px 0px;
-    margin-right: 10px;
+    border-width: 4px 2px 4px 2px;
+    width: 100%;
     height: 100%;
+    background-color: rgba(188, 224, 237, 0.6);
+    border-style: solid;
+    border-color: #BCE0ED;
+    transition: background-color 0.5s;
+}
+
+#card3:hover {
+    background-color: rgba(188, 224, 237, 1);
 }
 
 #card4 {
     border-style: solid;
     border-color: #BCE0ED;
-    border-width: 0px 4px 0px 0px;
-    margin-right: 10px;
+    border-width: 4px 2px 4px 2px;
+    width: 100%;
     height: 100%;
+    background-color: rgba(188, 224, 237, 0.6);
+    border-style: solid;
+    border-color: #BCE0ED;
+    transition: background-color 0.5s;
+}
+
+#card4:hover {
+    background-color: rgba(188, 224, 237, 1);
 }
 
 #card5 {
     border-style: solid;
     border-color: #BCE0ED;
-    border-width: 0px 4px 0px 0px;
-    margin-right: 10px;
+    border-width: 4px 2px 4px 2px;
+    width: 100%;
     height: 100%;
+    background-color: rgba(188, 224, 237, 0.6);
+    border-style: solid;
+    border-color: #BCE0ED;
+    transition: background-color 0.5s;
+}
+
+#card5:hover {
+    background-color: rgba(188, 224, 237, 1);
+}
+
+#card6 {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 4px 4px 4px 2px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(188, 224, 237, 0.6);
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-radius: 0px 10px 10px 0px;
+    transition: background-color 0.5s;
+}
+
+#card6:hover {
+    background-color: rgba(188, 224, 237, 1);
 }
 
 .date{
@@ -127,11 +176,12 @@ body {
 #searchBar {
     border-style: solid;
     border-color: #BCE0ED;
-    border-width: 4px;
+    border-width: 4px 0px 4px 4px;
     border-radius: 10px 0px 0px 10px;
     padding: 5px;
     font-size: 20px;
     margin: 0px;
+    width: 70%;
 }
 
 #searchBtn {
@@ -143,5 +193,17 @@ body {
     padding: 5px;
     font-size: 20px;
     margin: 0px;
+    width: 30%;
+}
 
+#searchBtn:active {
+    border-style: solid;
+    border-color: #9CD2E6;
+    background-color: #9CD2E6;
+    border-width: 4px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 0px;
+    width: 30%;
 }
