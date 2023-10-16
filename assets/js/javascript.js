@@ -8,26 +8,72 @@ searchButton.click(function() {
 });
 
 function getLocation(searchCity) {
-  var url = 'http://api.openweathermap.org/geo/1.0/direct?q=' + searchCity + '&limit=1&appid=' + APIKey;
+  var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchCity + '&limit=1&appid=' + APIKey;
   fetch(url)
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          console.log(data);
-          var lat = data[0].lat;
-          var lon = data[0].lon;
-          getWeatherForecast(lat, lon);
-      })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+        var lat = data[0].lat;
+        var lon = data[0].lon;
+        var cityName = data[0].name;
+        getWeatherForecast(lat, lon, cityName);
+    })
 }
 
 function getWeatherForecast(lat, lon) {
   var url = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIKey;
   fetch(url)
-      .then(function (response) {
-          return response.json();
-      })
-      .then(function (data) {
-          console.log(data);
-      })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+        var forecastData = data.list;
+        populateCards(forecastData);
+    })
+}
+
+function populateCards(forecastData, cityName) {
+  var cityName = card.querySelector('#CityName');
+  var cards = document.querySelectorAll('.card');
+
+  for (var i = 0; i < cards.length; i++) {
+    var card = cards[i];
+
+    var date = card.querySelector('.date');
+    date.textContent = formatDate(i);
+
+    var temp = card.querySelector('.temp');
+    temp.textContent = getTemp(i, forecastData);
+    
+    var wind = card.querySelector('.wind');
+    wind.textContent = getWindSpeed(i, forecastData);
+
+    var humidity = card.querySelector('.humidity');
+    humidity.textContent = getHumidity(i, forecastData);
+  }
+}
+
+function formatDate(index) {
+  var date = new Date();
+  date.setDate(date.getDate() + index);
+  var formattedDate = date.toLocaleDateString('en-US', {day: 'numeric', month: 'short'});
+  return formattedDate;
+}
+
+function getTemp(index, forecastData) {
+  var temp = 'Temp: ' +  forecastData[index].main.temp;
+  return temp;
+}
+
+function getWindSpeed(index, forecastData) {
+  var windSpeed = 'Wind: ' +  forecastData[index].wind.speed;
+  return windSpeed;
+}
+
+function getHumidity(index, forecastData) {
+  var humidity = 'Humidity: ' + forecastData[index].main.humidity;
+  return humidity;
 }

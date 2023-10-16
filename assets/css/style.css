@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#bodycontainer {
+    display: flex;
+    align-items: start;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #DAE8ED;
+    margin: -10px;
+    font-weight: bold;
+}
+
+#CityName {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.todayresults {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#herocard {
+    padding: 20px;
+}
+
+#cardcontainer {
+    display: flex;
+    justify-content: space-around;
+    background-color:  #DAE8ED;
+    margin: 10px;
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 4px;
+    border-radius: 10px;
+}
+
+.card {
+    display: relative;
+    right: 0px;
+    width: 20%;
+    padding: 50px 0px 50px 20px;
+}
+
+#card2 {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 0px 4px 0px 0px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+#card3 {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 0px 4px 0px 0px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+#card4 {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 0px 4px 0px 0px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+#card5 {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 0px 4px 0px 0px;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.date{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.temp{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.wind{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.humidity{
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#results {
+    width: 75%;
+}
+
+#searchcontainer {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 25%;
+}
+
+#searchHeader{
+    font-size: 20px;
+    margin-left: 2px;
+    margin-bottom: 5px;
+}
+
+#searchBar {
+    border-style: solid;
+    border-color: #BCE0ED;
+    border-width: 4px;
+    border-radius: 10px 0px 0px 10px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 0px;
+}
+
+#searchBtn {
+    border-style: solid;
+    border-color: #BCE0ED;
+    background-color: #BCE0ED;
+    border-width: 4px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 0px;
+
+}
