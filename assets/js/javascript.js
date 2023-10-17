@@ -4,21 +4,30 @@ var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
 
 searchButton.click(function() {
   var searchCity = $('#searchBar').val();
-  updateSearches(searchCity);
   getLocation(searchCity);
 });
 
-function updateSearches(newCity) {
-  if (!citySearches.includes(newCity)) {
-    citySearches.push(newCity);
+function updateSearches(cityDetails) {
+  if (!citySearches.includes(cityDetails)) {
+    citySearches.push(cityDetails);
 
     if (citySearches.length > 10) {
       citySearches.shift();
     }
 
     localStorage.setItem("cities", JSON.stringify(citySearches));
-  }
-}
+  }}
+
+function updateSearchList() {
+  var searchList = $('#searchList');
+  for (var i = 0; i < citySearches.length; i++) {
+    var listItem = $('<li>').addClass('listItem').text(citySearches[i]);
+    listItem.css({
+      margin: '5px',
+      fontSize: '20px',
+    })
+    searchList.append(listItem);
+  }}
 
 function getLocation(searchCity) {
   var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchCity + '&limit=1&appid=' + APIKey;
@@ -45,6 +54,7 @@ function getWeatherForecast(lat, lon) {
         var forecastData = data.list;
         var cityDetails = data.city.name;
         populateCards(forecastData, cityDetails);
+        updateSearches(cityDetails);
     })
 }
 
@@ -96,3 +106,12 @@ function getHumidity(index, forecastData) {
   var humidity = 'Humidity: ' + forecastData[index].main.humidity;
   return humidity;
 }
+
+
+
+
+// must be at the end
+
+$(document).ready(function() {
+  updateSearchList();
+});
