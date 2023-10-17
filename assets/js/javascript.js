@@ -1,5 +1,6 @@
 const APIKey = "2b0d82c56713c6ea8be1f1b334a862ab";
 var searchButton = $('#searchBtn');
+var savedSearch = document.getElementsByClassName("listItem");
 var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
 
 searchButton.click(function() {
@@ -8,26 +9,61 @@ searchButton.click(function() {
 });
 
 function updateSearches(cityDetails) {
+  var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
+  
   if (!citySearches.includes(cityDetails)) {
     citySearches.push(cityDetails);
 
     if (citySearches.length > 10) {
       citySearches.shift();
     }
-
     localStorage.setItem("cities", JSON.stringify(citySearches));
-  }}
+  }
+}
 
 function updateSearchList() {
   var searchList = $('#searchList');
-  for (var i = 0; i < citySearches.length; i++) {
-    var listItem = $('<li>').addClass('listItem').text(citySearches[i]);
+
+  var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
+  searchList.empty();
+  citySearches.reverse();
+  
+   for (var i = 0; i < citySearches.length; i++) {
+    var listItem = $('<button>').addClass('listItem').text(citySearches[i]);
     listItem.css({
       margin: '5px',
       fontSize: '20px',
+      display: 'flex',
+      alignItems: 'center',
+      width: '90%',
+      backgroundColor: '#BCE0ED',
+      border: 'none',
+      borderRadius: '5px',
+      padding: '5px',
     })
     searchList.append(listItem);
-  }}
+    
+    listItem.on("click", function() {
+      var buttonText = $(this).text();
+      handleSavedSearch(buttonText);
+    });
+  }
+}
+
+
+  function handleSavedSearch(buttonText) {
+    var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + buttonText + '&limit=1&appid=' + APIKey;
+    fetch(url)
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          console.log(data);
+          var lat = data[0].lat;
+          var lon = data[0].lon;
+          getWeatherForecast(lat, lon);
+      })
+  }
 
 function getLocation(searchCity) {
   var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + searchCity + '&limit=1&appid=' + APIKey;
@@ -55,6 +91,7 @@ function getWeatherForecast(lat, lon) {
         var cityDetails = data.city.name;
         populateCards(forecastData, cityDetails);
         updateSearches(cityDetails);
+        updateSearchList();
     })
 }
 
