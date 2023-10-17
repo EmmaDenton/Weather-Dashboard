@@ -1,5 +1,9 @@
 # Weather-Dashboard
 
+This project is a weather dashboard that allows users to search for weather information based on a city. Upon searching, the site retrieves the latitude and longitude of the city, which is then used to fetch the current and future weather conditions for the next 5 days. Additionally, the project includes a feature that saves the 10 most recent searches to the local storage. These saved searches are displayed as buttons beneath the search input, enabling users to quickly navigate back to a previous search by simply clicking on the corresponding button.
+
+![deployed site](<assets/images/Screenshot 2023-10-18 at 9.48.01 am.png>)
+
 ## User Story
 AS A traveler
 I WANT to see the weather outlook for multiple cities
