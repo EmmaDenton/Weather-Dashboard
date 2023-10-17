@@ -3,6 +3,14 @@ body {
     margin-right: 10%;
     margin-left: 10%;
 }
+#backgroundContainer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+  }
 
 #bodycontainer {
     display: flex;
@@ -199,8 +207,21 @@ body {
 
 #searchBtn:active {
     border-style: solid;
-    border-color: #9CD2E6;
-    background-color: #9CD2E6;
+    border-color: #77C3DF;
+    background-color: #77C3DF;
+    color: white;
+    border-width: 4px;
+    border-radius: 0px 10px 10px 0px;
+    padding: 5px;
+    font-size: 20px;
+    margin: 0px;
+    width: 30%;
+}
+
+#searchBtn:hover {
+    border-style: solid;
+    border-color: #77C3DF;
+    background-color: #77C3DF;
     border-width: 4px;
     border-radius: 0px 10px 10px 0px;
     padding: 5px;
@@ -219,4 +240,8 @@ body {
     padding: 0px 0px 3px 0px;
     padding-top: 40px;
     border-radius: 10px;
+}
+
+.listItem:active {
+    background-color: red;
 }

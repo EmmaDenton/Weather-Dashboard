@@ -1,6 +1,6 @@
 const APIKey = "2b0d82c56713c6ea8be1f1b334a862ab";
-var searchButton = $('#searchBtn');
-var savedSearch = document.getElementsByClassName("listItem");
+const searchButton = $('#searchBtn');
+const savedSearch = document.querySelectorAll(".listItem");
 var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
 
 searchButton.click(function() {
@@ -22,36 +22,45 @@ function updateSearches(cityDetails) {
 }
 
 function updateSearchList() {
-  var searchList = $('#searchList');
+  const searchList = document.querySelector('#searchList');
 
-  var citySearches = JSON.parse(localStorage.getItem("cities")) || [];
-  searchList.empty();
+  const citySearches = JSON.parse(localStorage.getItem("cities")) || [];
+  searchList.innerHTML = '';
   citySearches.reverse();
   
-   for (var i = 0; i < citySearches.length; i++) {
-    var listItem = $('<button>').addClass('listItem').text(citySearches[i]);
-    listItem.css({
-      margin: '5px',
-      fontSize: '20px',
-      display: 'flex',
-      alignItems: 'center',
-      width: '90%',
-      backgroundColor: '#BCE0ED',
-      border: 'none',
-      borderRadius: '5px',
-      padding: '5px',
-    })
-    searchList.append(listItem);
+   for (let i = 0; i < citySearches.length; i++) {
+    const listItem = document.createElement('button');
+    listItem.classList.add('listItem');
+    listItem.textContent = citySearches[i];
+    listItem.style.margin = '5px';
+    listItem.style.fontSize = '20px';
+    listItem.style.display = 'flex';
+    listItem.style.alignItems = 'center';
+    listItem.style.width = '90%';
+    listItem.style.backgroundColor = '#BCE0ED';
+    listItem.style.border = 'none';
+    listItem.style.borderRadius = '5px';
+    listItem.style.padding = '5px';
     
-    listItem.on("click", function() {
-      var buttonText = $(this).text();
+    listItem.addEventListener("mouseenter", function() {
+      listItem.style.backgroundColor = '#77C3DF';
+    });
+    
+    listItem.addEventListener("mouseleave", function() {
+      listItem.style.backgroundColor = '#BCE0ED';
+    });
+    
+    listItem.addEventListener("click", function() {
+      const buttonText = listItem.textContent;
+      listItem.style.color = 'white';
       handleSavedSearch(buttonText);
     });
+    
+    searchList.appendChild(listItem);
   }
 }
 
-
-  function handleSavedSearch(buttonText) {
+function handleSavedSearch(buttonText) {
     var url = 'https://api.openweathermap.org/geo/1.0/direct?q=' + buttonText + '&limit=1&appid=' + APIKey;
     fetch(url)
       .then(function (response) {
@@ -144,11 +153,11 @@ function getHumidity(index, forecastData) {
   return humidity;
 }
 
-
-
-
 // must be at the end
 
 $(document).ready(function() {
   updateSearchList();
+  var searchCity = 'Sydney';
+  getLocation(searchCity)
 });
+
